@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+int fib(int n, int qb[])
+{
+    
+    
+    if( n==0 or n==1)
+    {
+        return n;
+    }
+    if(qb[n]!= 0)
+    {
+        return qb[n];
+    }
+        int fib1= fib(n-1, qb);
+        int fib2= fib(n-2, qb);
+        int term= fib1+fib2;
+    
+    qb[n]= term;
+    return term;
+    
+    
+}
+int main()
+{
+    int n;
+    cout<<"Enter n: \n";
+    cin>>n;
+    int qb[n+1]={0};
+    cout<<fib(n, qb);
+
+    return 0;
+}
