@@ -1,0 +1,43 @@
+#include <iostream>
+
+using namespace std;
+/*
+        CLIMBING STAIRS WITH VARIABLE STEPS
+        using tabulation from dynamic programming
+
+*/
+int CountVariablePathStairs(int begin, int end, int arr[])
+{
+    int dp[end-begin+1]={0};
+    dp[end]=1;
+        
+    for(int i= end-1; i>=begin; i--)
+        { 
+            for(int j=1; j<=arr[i] && i+j<= (end-begin);j++)
+            {
+                dp[i] += dp[i+j];
+            }
+            
+        }
+    
+    return dp[begin];
+}
+
+int main()
+{
+    int s,e;
+    cout<<"Enter from which stair you want to start : ";
+    cin>>s;
+    cout<<"Enter till which stair you want to go : ";
+    cin>>e;
+    int arr[e-s-1];
+    for(int i=s; i<=e-s-1; i++)
+    {
+        cout<<"enter array element "<<i<<" : ";
+        cin>>arr[i];
+    }
+    
+    cout<<"no. of paths are : "<<CountVariablePathStairs(s,e,arr);
+
+    return 0;
+}
